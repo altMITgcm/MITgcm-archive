@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+#  $Header: /u/gcmpack/MITgcm/tools/build_options/linux_ia32_pgf77+mpi_aer,v 1.2 2003/11/13 22:03:39 edhill Exp $
+#
+
+S64='$(TOOLSDIR)/set64bitConst.sh'
+MAKEDEPEND=makedepend
+DEFINES='-DWORDLENGTH=4'
+
+
+CPP='/lib/cpp  -traditional -P'
+FC='/opt/mpich/bin/mpif77'
+LINK='/opt/mpich/bin/mpif77'
+FFLAGS='-byteswapio -r8 -Mnodclchk -Mextend'
+FOPTIM='-tp p6 -v -O2 -Munroll -Mvect=cachesize:512000,transform -Kieee'
+LIBS='-L/opt/mpich/lib/ -lfmpich -lmpich'
+INCLUDES='-I/opt/mpich/include'

@@ -1,0 +1,22 @@
+#!/bin/bash
+#
+#  $Header: /u/gcmpack/MITgcm/tools/build_options/linux_ia64_g77,v 1.2 2003/11/13 22:03:39 edhill Exp $
+#
+
+
+FC=g77
+DEFINES='-D_BYTESWAPIO -DWORDLENGTH=4'
+CPP='cpp  -traditional -P'
+NOOPTFLAGS='-O0'
+
+#  For IEEE, use the "-ffloat-store" option
+if test "x$IEEE" = x ; then
+    FFLAGS='-Wimplicit -Wunused -Wuninitialized'
+    FOPTIM='-O3 -funroll-loops'
+else
+    FFLAGS='-Wimplicit -Wunused -Wuninitialized -ffloat-store'
+    FOPTIM='-O0'
+fi
+
+
+
