@@ -1,0 +1,18 @@
+#!/bin/bash
+#
+#  $Header: /u/gcmpack/MITgcm/tools/build_options/Attic/sunfire+mpi,v 1.2 2003/08/27 22:12:31 edhill Exp $
+#
+
+S64='$(TOOLSDIR)/set64bitConst.sh'
+MAKEDEPEND=makedepend
+DEFINES='-DWORDLENGTH=4'
+
+FC='mpf77'
+LINK='mpf77'
+LN='/usr/bin/ln -s'
+CPP='/usr/ccs/lib/cpp -P'
+INCLUDES='-I/opt/SUNWhpc/include'
+LIBS='-lmpi -lthread -lsocket -lnsl'
+FOPTIM='-dalign -O4 -xarch=native'
+CFLAGS='-dalign -xO4 -xarch=native'
+NOOPTFLAGS='-dalign -O0 -xarch=native'
