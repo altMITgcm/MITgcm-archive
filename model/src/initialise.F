@@ -1,4 +1,4 @@
-C $Id: initialise.F,v 1.1.1.1 1998/04/22 19:15:30 cnh Exp $
+C $Header: /u/gcmpack/MITgcm/model/src/Attic/initialise.F,v 1.6 1998/07/02 14:16:24 adcroft Exp $
 
 #include "CPP_EEOPTIONS.h"
 
@@ -36,21 +36,30 @@ C     an input file called data.
       CALL INI_PARMS(  myThid )
       _BARRIER
 
+C--   Set model grid.
+C     Variables defining model grid spacing are defined.
+      CALL INI_GRID( myThid )
+      _BARRIER
+
 C--   Initialise map of depths
       CALL INI_DEPTHS( myThid )
       _BARRIER
 
-C--   Set model grid.
-C     Variables defining model grid spacing are defined.
+C--   Derive masks, lopping factors and recipricols of quantities.
 C     Volumes and areas are set according to grid and depth map.
-      CALL INI_GRID( myThid )
-      _BARRIER
+      CALL INI_MASKS_ETC( myThid )
 
+      _BARRIER
 C--   Initialise model fields.
 C     Starting values of U, V, W, temp., salt. and tendency terms
 C     are set here. Fields are either set to default or read from
 C     stored files.
       CALL INI_FIELDS( myThid )
+      _BARRIER
+
+C--   Initialise time-stepping (predictor variables are carried in G)
+      IF ( startTime .EQ. 0. ) 
+     & CALL INI_PREDICTOR( myThid )
       _BARRIER
 
 C--   Set coriolis operators
@@ -67,5 +76,3 @@ C--   Finally summarise the model cofiguration and state
       CALL STATE_SUMMARY( myThid )
 
       END
-
-C $Id: initialise.F,v 1.1.1.1 1998/04/22 19:15:30 cnh Exp $
