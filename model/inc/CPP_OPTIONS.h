@@ -1,2 +1,6 @@
-C $Id: CPP_OPTIONS.h,v 1.1.1.1 1998/04/22 19:15:31 cnh Exp $
+C $Header: /u/gcmpack/MITgcm/model/inc/CPP_OPTIONS.h,v 1.4 1998/06/12 19:33:33 cnh Exp $
 C
+
+#define ALLOW_CD
+
+#include "CPP_EEOPTIONS.h"

@@ -1,4 +1,4 @@
-C $Id: CPP_EEOPTIONS.h,v 1.1.1.1 1998/04/22 19:15:30 cnh Exp $
+C $Header: /u/gcmpack/MITgcm/eesupp/inc/CPP_EEOPTIONS.h,v 1.4 1998/06/09 15:58:35 adcroft Exp $
 C
 C     /==========================================================\
 C     | CPP_EEOPTIONS.h                                          |
@@ -22,6 +22,9 @@ C     |       once an experimental configuration has been        |
 C     |       identified, rebuild the code with the appropriate  |
 C     |       options set at compile time.                       |
 C     \==========================================================/
+
+#ifndef _CPP_EEOPTIONS_H_
+#define _CPP_EEOPTIONS_H_
 
 C     In general the following convention applies:
 C     ALLOW  - indicates an feature will be included but it may
@@ -172,3 +175,5 @@ C     precision when they see .Dnn which runs very slowly!
 #ifndef REAL_D0_IS_16BYTES
 #define _d D
 #endif
+
+#endif /* _CPP_EEOPTIONS_H_ */

@@ -1,4 +1,4 @@
-C $Id: find_wvel.F,v 1.1.1.1 1998/04/22 19:15:30 cnh Exp $
+C $Header: /u/gcmpack/MITgcm/model/src/Attic/find_wvel.F,v 1.5 1998/05/28 03:34:52 cnh Exp $
 
 #include "CPP_EEOPTIONS.h"
 
@@ -35,14 +35,14 @@ C $Id: find_wvel.F,v 1.1.1.1 1998/04/22 19:15:30 cnh Exp $
 ! Volume transport thru' Western faces
        do j=jMin,jMax
         do i=iMin,iMax
-         Utrans(i,j)=dyF(i,j,bi,bj)*dzF(k)*Uvel(i,j,k,bi,bj)
+         Utrans(i,j)=_dyF(i,j,bi,bj)*dzF(k)*Uvel(i,j,k,bi,bj)
         enddo
        enddo
 
 ! Volume transport thru' Southern faces
        do j=jMin,jMax
         do i=iMin,iMax
-         Vtrans(i,j)=dxF(i,j,bi,bj)*dzF(k)*Vvel(i,j,k,bi,bj)
+         Vtrans(i,j)=_dxF(i,j,bi,bj)*dzF(k)*Vvel(i,j,k,bi,bj)
         enddo
        enddo
 
@@ -58,7 +58,7 @@ C $Id: find_wvel.F,v 1.1.1.1 1998/04/22 19:15:30 cnh Exp $
        do j=jMin,jMax
         do i=iMin,iMax
          Wvel(i,j,k)=Wtrans(i,j)
-     &          *rdxF(i,j,bi,bj)*rdyF(i,j,bi,bj)	! should be 1/zA(...)
+     &          *_rdxF(i,j,bi,bj)*_rdyF(i,j,bi,bj)	! should be 1/zA(...)
         enddo
        enddo
 

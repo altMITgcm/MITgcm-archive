@@ -1,4 +1,4 @@
-C $Id: eeboot.F,v 1.1.1.1 1998/04/22 19:15:30 cnh Exp $
+C $Header: /u/gcmpack/MITgcm/eesupp/src/eeboot.F,v 1.4 1998/05/21 18:30:08 cnh Exp $
 
 #include "CPP_EEOPTIONS.h"
 
@@ -56,6 +56,7 @@ C                     the threads are running.
        allMyEdgesAreSharedMemory(I) = .TRUE.
        threadIsRunning(I)           = .FALSE.
        threadIsComplete(I)          = .FALSE.
+       ioErrorCount(I)              = 0
       ENDDO
       scrUnit1      = 11
       scrUnit2      = 12
@@ -108,8 +109,10 @@ C     o Note the program is still running with a single thread of
 C       execution at this stage.
       CALL INI_THREADING_ENVIRONMENT
       IF ( eeBootError ) GOTO 999
+
+C--   Initiialise the multi-process IO package
+      CALL DFILE_INIT
  
   999 CONTINUE
       RETURN
       END
-C $Id: eeboot.F,v 1.1.1.1 1998/04/22 19:15:30 cnh Exp $
